@@ -25,5 +25,32 @@
     </div>
 </form>
 </div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='MAILCHIMP';ftypes[5]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+
+<script>
+// --- Obtener valores de UTM y pasarlos al input UTM --- //
+const utmfield = document.getElementById('mce-EMAIL');
+utmfield.value = '';
+let cadenaUTM;
+
+let queryForm = function(settings){
+    let reset = settings && settings.reset ? settings.reset : false;
+    // ---- CAMBIAR EL VALOR PARENT CUANDO SE INSERTA EN UN IFRAME ---- //
+    let self = window.parent.location.toString();
+    let querystring = self.split("?");
+    if (querystring.length > 1) {
+        cadenaUTM = querystring[1];
+    }
+}
+
+setTimeout(function(){
+    queryForm()
+    if(cadenaUTM != null){
+        console.log(cadenaUTM);
+        utmfield.value = cadenaUTM;
+    }
+}, 500);
+</script>
+
+<script type='text/javascript' src='https//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='MAILCHIMP';ftypes[5]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
+
